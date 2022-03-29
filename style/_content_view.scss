@@ -1,0 +1,96 @@
+#main {
+    scroll-behavior: smooth;
+    background-color: $primaryColor;
+    color: $primaryFontColor;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: 0px;
+    height: 100%;
+    width: calc(100% - 258px);
+    scrollbar-width: thin;
+
+    transition: width 0.2s ease-in-out;
+    
+    #title {
+        text-align: center;
+    }
+
+    #product-title {
+        position: absolute;
+        z-index: 1;
+        color: $secondaryFontColor;
+        top: 15%;
+        left: 30%;
+    }
+
+    .article {
+        width: calc(60% - 20px);
+        height: fit-content;
+        margin: 10px 20%;
+        margin-bottom: 20px;
+
+        .title-container {
+            border-bottom: 1px solid $secondaryColor;
+
+            .title {
+                font-weight: 400;
+                font-size: 40pt;
+                width: 50%;
+                margin-bottom: 0px;
+            }
+    
+            .subtitle {
+                margin-top: 20px;
+                font-weight: 300;
+                font-size: 22pt;
+            }
+        }
+
+        .section-title {
+            margin-top: 30px;
+            font-weight: 400;
+            font-size: 20pt;
+        }
+    }
+
+    .sketchfab-embed-wrapper {
+        height: 100%;
+
+        iframe {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: $phoneWidth) and (orientation: portrait) {
+    #main {
+        margin: 45px 0;
+        width: 103%;
+        height: calc(100% - 110px);
+
+        .article {
+            width: calc(80% - 20px);
+            margin: 10px 10%;
+
+            .title-container {
+                .title {
+                    font-size: 30pt;
+                    width: 80%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $tabletWidth) and (orientation: portrait) {
+    #main {
+        .article {
+            .title-container {
+                .title {
+                    width: 34pt;
+                }
+            }
+        }
+    }
+}

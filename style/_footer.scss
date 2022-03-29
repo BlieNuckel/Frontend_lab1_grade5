@@ -1,0 +1,19 @@
+footer {
+    div {
+        color: $secondaryFontColor;
+        background-color: $secondaryColor;
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 0;
+
+        img {
+            height: 45px;
+            margin: 0px 30px;
+        }
+    }
+}

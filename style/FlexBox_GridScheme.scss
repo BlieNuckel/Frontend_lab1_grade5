@@ -1,0 +1,40 @@
+$primaryColor: white;
+$primaryFontColor: #253031;
+$secondaryColor: #253031;
+$secondaryFontColor: white;
+$highlightColor: #20A5FE;
+
+$phoneWidth: 550px;
+$tabletWidth: 920px;
+
+@import './layout';
+@import './header';
+@import './content_view';
+@import './right';
+@import './left';
+@import './footer';
+
+a {
+    text-decoration: none;
+    color: $primaryFontColor;
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #a8a8a8;
+    border-radius: 20px;
+    border: 3px solid white;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #a8a8a8 white;
+}

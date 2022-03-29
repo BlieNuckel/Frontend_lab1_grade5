@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Column Layout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:wght@100;200;300;400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./out/FlexBox_GridScheme.css">
+</head>
+
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="javascript:switchTo3DProduct();">3D Product</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="menu">
+        <img id="menu-icon" src="https://www.svgrepo.com/show/76216/right-thin-chevron.svg" onclick="toggleMenuMobile()"
+            alt="menu-icon">
+        <h2>YuMi Articles</h2>
+        <nav>
+            <ul>
+                <li><a href="javascript:switchToArticle('Digital Twin Earth Indexation'); toggleMenuMobile()">Digital
+                        Twin Earth
+                        Indexation</a></li>
+                <li><a href="javascript:switchToArticle('3D Optical Sensors'); toggleMenuMobile()">3D Optical
+                        Sensors</a></li>
+                <li><a href="javascript:switchToArticle('3D Analytics'); toggleMenuMobile()">3D Analytics</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="layout-grid">
+        <div id="main">
+            <div class="sketchfab-embed-wrapper">
+                <iframe id="sketchfab-iframe" title="bras_robot_abb" frameborder="0" allowfullscreen
+                    mozallowfullscreen="true" webkitallowfullscreen="true"
+                    allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+                    execution-while-out-of-viewport execution-while-not-rendered web-share
+                    src="https://sketchfab.com/models/61b66b81a60042ddb37b3407c83bca4b/embed?autospin=1&autostart=1&camera=0&dnt=1">
+                </iframe>
+            </div>
+        </div>
+        <div id="right">
+            <p id="hide-mobile" onclick="toggleArticleNavMobile()">hide</p>
+            <div id="article-nav-container">
+                <h1>YuMi - Collaborate</h1>
+                <ul id="article-nav">
+                    <p>Introduction to what YuMi is and why it was made. Introduction to what YuMi is and why it was
+                        made. Introduction to what YuMi is and why it was made. Introduction to what YuMi is and why it
+                        was made. Introduction to what YuMi is and why it was made.
+                    </p>
+                    <li>Feel the Future</li>
+                    <p>Description of YuMi's improvements with focus on how the user's life/work/interaction is
+                        improved, not the technical details, compared to the currently in place models and why
+                        YuMi 'makes the future'.</p>
+                    <li>Interaction Made Easy</li>
+                    <p>Description of YuMi's greater ability to allow for human interaction and collaboration between
+                        YuMi and humans, as well as, multiple YuMi robotic arms.
+                    </p>
+                    <li>Sustainability</li>
+                    <p>Describe the process of designing, developing, and creating with a primary focus on how the YuMi
+                        robotic arm support sustainability and can help improve other companies' ability to stay within
+                        their own sustainability goals.</p>
+                </ul>
+            </div>
+            <p id="hide" onclick="toggleArticleNavDesktop()">hide</p>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" alt="">
+        </div>
+    </footer>
+</body>
+
+<script>
+    const mobileWidth = 550;
+
+    setArticleNavStyle();
+
+    window.onresize = setArticleNavStyle;
+
+    function toggleMenuMobile() {
+        if (isTouchDevice()) {
+            const menu = document.getElementById('menu');
+            const icon = document.getElementById('menu-icon')
+
+            if (menu.style.width === '') {
+                menu.style.top = '45px';
+                menu.style.width = '320px';
+                menu.style.height = '250px';
+                icon.style.marginTop = '20px';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                menu.style.top = null;
+                menu.style.width = null;
+                menu.style.height = null;
+                icon.style.marginTop = null;
+                icon.style.transform = null;
+            }
+        }
+    }
+
+    function isTouchDevice() {
+        return (('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0));
+    }
+
+    function setArticleNavStyle() {
+        const right = document.getElementById('right');
+        const iframe = document.getElementById('sketchfab-iframe');
+        if (window.innerWidth <= mobileWidth && window.matchMedia("(orientation: portrait)").matches) {
+            right.style.maxHeight = '400px';
+            right.style.width = null;
+            iframe.style.pointerEvents = 'none';
+        } else {
+            right.style.width = '250px'
+            right.style.maxHeight = null;
+        }
+    }
+
+    function toggleArticleNav() {
+        if (window.innerWidth <= mobileWidth && window.matchMedia("(orientation: portrait)").matches) {
+            toggleArticleNavMobile();
+        } else {
+            toggleArticleNavDesktop();
+        }
+    }
+
+    function toggleArticleNavDesktop() {
+        var transitionEnd = whichTransitionEvent();
+        const right = document.getElementById('right');
+        const hideBtn = document.getElementById('hide');
+        const articleNavContainer = document.getElementById('article-nav-container');
+        const main = document.getElementById('main');
+
+        right.addEventListener(transitionEnd, animateArticleNavDesktop, false);
+
+        if (right.style.width === '250px') {
+            right.style.width = '10px';
+            main.style.width = 'calc(100% - 20px)';
+        } else {
+            right.style.width = '250px';
+            hideBtn.style.writingMode = 'horizontal-tb';
+            articleNavContainer.style.visibility = 'visible';
+            hideBtn.style.width = 'fit-content';
+            hideBtn.innerHTML = 'hide';
+            main.style.width = 'calc(100% - 258px)';
+        }
+    }
+
+    function toggleArticleNavMobile() {
+        const right = document.getElementById('right');
+        const hideBtn = document.getElementById('hide-mobile');
+        const main = document.getElementById('main');
+        const iframe = document.getElementById('sketchfab-iframe');
+
+        if (right.style.maxHeight !== '20px') {
+            right.style.maxHeight = '20px';
+            hideBtn.innerHTML = 'show';
+            main.style.height = 'calc(100% - 130px);';
+            iframe.style.pointerEvents = 'all';
+        } else {
+            right.style.maxHeight = '400px';
+            hideBtn.innerHTML = 'hide';
+            main.style.width = 'calc';
+            iframe.style.pointerEvents = 'none';
+        }
+    }
+
+    function animateArticleNavDesktop() {
+        const right = document.getElementById('right');
+        const hideBtn = document.getElementById('hide');
+        const articleNavContainer = document.getElementById('article-nav-container');
+        const main = document.getElementById('main');
+
+        if (right.style.width !== '250px') {
+            hideBtn.style.writingMode = 'vertical-rl';
+            articleNavContainer.style.visibility = 'hidden';
+            hideBtn.style.width = 'auto';
+            hideBtn.innerHTML = 'show';
+        }
+
+    }
+
+    // Function not my own, found at https://stackoverflow.com/a/15618028
+    function whichTransitionEvent() {
+        var t;
+        var el = document.createElement('fakeelement');
+        var transitions = {
+            'transition': 'transitionend',
+            'OTransition': 'oTransitionEnd',
+            'MozTransition': 'transitionend',
+            'WebkitTransition': 'webkitTransitionEnd'
+        }
+
+        for (t in transitions) {
+            if (el.style[t] !== undefined) {
+                return transitions[t];
+            }
+        }
+    }
+
+    function switchTo3DProduct() {
+        const main = document.getElementById('main');
+        const right = document.getElementById('right');
+        const articlenav = document.getElementById('article-nav-container');
+
+        if (right.style.width === '17%') {
+            toggleArticleNavDesktop();
+        } else if (right.style.height === '400px') {
+            toggleArticleNavMobile();
+        }
+
+        main.innerHTML = `
+            <div class="sketchfab-embed-wrapper">
+                <iframe id="sketchfab-iframe" title="Bear head" frameborder="0" allowfullscreen mozallowfullscreen="true"
+                    webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+                    execution-while-out-of-viewport execution-while-not-rendered web-share
+                    src="https://sketchfab.com/models/74017754d6d443a1bc258da98b08e6fc/embed?autospin=1&autostart=1&camera=0&dnt=1">
+                </iframe>
+            </div>`;
+
+        articlenav.innerHTML = `
+                <h1>Specifications</h1>
+                <ul id="article-nav">
+                    <li>Description</li>
+                    <p>This is a description, discussing the technical improvements the robotic arm makes over other, 
+                        older models of arms. Mostly focused on the hardware aspects and functionality, as it is discussed
+                        on the front page with more focus on why/how it's an improvement in use.</p>
+                    <li>Hardware</li>
+                    <p>YuMi bot features extensive state-of-the-art technology that lets it perform tasks like no other
+                        robot could have done before. With 3 joins made up of brushless motors and 3.4GHz of built in
+                        processing power the YuMi is the fastest robotic arm. It is built out of military grade
+                        aluminium and features nano-precision technology to interact with the world around it.</p>
+                    <li>Parts</li>
+                    <p>This is a text that talks extensively about the various parts that power the YuMi bot.</p>
+                    <li>Interfacing</li>
+                    <p>A text describing in great detail how exactly the YuMi robotic arm is used by people and how it
+                        can be interfaced with in a way that makes it easy for humans to operate.</p>
+                    <li>More Info</li>
+                    <p>This is a bunch more information regarding the arm. It's also a piece of text that functions to
+                        show the websites ability to automatically make the container in which this text is kept
+                        scrollable, so no important details get left out of the customers view.<br>That's why this keeps
+                        going for a good while, because it really needs to go past the bottom edge of this div,
+                        otherwise I won't be able to show off how well everything on the website works for displaying
+                        and marketing this great, amazing product.</p>
+                </ul>`
+    }
+
+    function switchToArticle(articleName) {
+        const main = document.getElementById('main');
+        const articleNav = document.getElementById('article-nav-container');
+
+        main.scrollTop = 0;
+
+        switch (articleName) {
+            case 'Digital Twin Earth Indexation':
+                main.innerHTML = `
+                    <article class="article">
+                    <div class="title-container">
+                        <h1 class="title">Digital Twin Earth Indexation</h1>
+                        <h4 class="subtitle">The twin earth indexation article sub-title</h4>
+                    </div>
+
+                    <div class="text-body">
+                        <p>Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Integer vitae justo eget magna
+                            fermentum. Aliquam faucibus purus in massa tempor nec. Consequat semper viverra nam libero justo
+                            laoreet. Pellentesque habitant morbi tristique senectus et.
+                        </p>
+                        <p>Eu turpis egestas pretium aenean pharetra magna ac. Aenean vel elit scelerisque mauris
+                            pellentesque pulvinar pellentesque habitant. Venenatis a condimentum vitae sapien pellentesque
+                            habitant. Morbi enim nunc faucibus a pellentesque sit amet porttitor. Neque aliquam vestibulum
+                            morbi blandit. Donec massa sapien faucibus et.
+                        </p>
+                        <h2 class="section-title" id="section1">Section Title 1</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <h2 class="section-title" id="section2">Section Title 2</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <h2 class="section-title" id="section3">Section Title 3</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                    </div>
+
+                </article>
+                `
+                articleNav.innerHTML = `
+                <h1>Sections</h1>
+                <ul id="article-nav">
+                    <li><a href="#section1">Section Title 1</a></li>
+                    <li><a href="#section2">Section Title 2</a></li>
+                    <li><a href="#section3">Section Title 3</a></li>
+                </ul>
+                `
+                break;
+
+
+            case '3D Optical Sensors':
+                main.innerHTML = `
+                    <article class="article">
+                    <div class="title-container">
+                        <h1 class="title">3D Optical Sensors</h1>
+                        <h4 class="subtitle">3D Optical Sensors </h4>
+                    </div>
+
+                    <div class="text-body">
+                        <p>Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Integer vitae justo eget magna
+                            fermentum. Aliquam faucibus purus in massa tempor nec. Consequat semper viverra nam libero justo
+                            laoreet. Pellentesque habitant morbi tristique senectus et.
+                        </p>
+                        <p>Eu turpis egestas pretium aenean pharetra magna ac. Aenean vel elit scelerisque mauris
+                            pellentesque pulvinar pellentesque habitant. Venenatis a condimentum vitae sapien pellentesque
+                            habitant. Morbi enim nunc faucibus a pellentesque sit amet porttitor. Neque aliquam vestibulum
+                            morbi blandit. Donec massa sapien faucibus et.
+                        </p>
+                        <h2 class="section-title" id="section1">Section Title 1</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <h2 class="section-title" id="section2">Section Title 2</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                    </div>
+                </article>
+                `
+                articleNav.innerHTML = `
+                <h1>Sections</h1>
+                <ul id="article-nav">
+                    <li><a href="#section1">Section Title 1</a></li>
+                    <li><a href="#section2">Section Title 2</a></li>
+                </ul>
+                `
+                break;
+
+            case '3D Analytics':
+                main.innerHTML = `
+                    <article class="article">
+                    <div class="title-container">
+                        <h1 class="title">3D Analytics</h1>
+                        <h4 class="subtitle">The 3D Analytics article sub-title</h4>
+                    </div>
+
+                    <div class="text-body">
+                        <p>Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Integer vitae justo eget magna
+                            fermentum. Aliquam faucibus purus in massa tempor nec. Consequat semper viverra nam libero justo
+                            laoreet. Pellentesque habitant morbi tristique senectus et.
+                        </p>
+                        <p>Eu turpis egestas pretium aenean pharetra magna ac. Aenean vel elit scelerisque mauris
+                            pellentesque pulvinar pellentesque habitant. Venenatis a condimentum vitae sapien pellentesque
+                            habitant. Morbi enim nunc faucibus a pellentesque sit amet porttitor. Neque aliquam vestibulum
+                            morbi blandit. Donec massa sapien faucibus et.
+                        </p>
+                        <h2 class="section-title" id="section1">Section Title 1</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <h2 class="section-title" id="section2">Section Title 2</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <h2 class="section-title" id="section3">Section Title 3</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <h2 class="section-title" id="section4">Section Title 4</h2>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                        <p>Erat nam at lectus urna duis convallis convallis. At augue eget arcu dictum varius duis. Nibh sit
+                            amet commodo nulla facilisi nullam vehicula ipsum a. Massa tincidunt nunc pulvinar sapien. Eget
+                            nunc lobortis mattis aliquam faucibus.
+                        </p>
+                        <p>Dolor magna eget est lorem. Sed nisi lacus sed viverra. Lectus urna duis convallis convallis
+                            tellus id interdum. Mauris vitae ultricies leo integer. Lorem dolor sed viverra ipsum nunc
+                            aliquet bibendum enim facilisis. Nunc id cursus metus aliquam. Proin sed libero enim sed
+                            faucibus turpis in eu. Sagittis vitae et leo duis ut diam quam nulla. Tortor posuere ac ut
+                            consequat semper viverra. In cursus turpis massa tincidunt dui ut.
+                        </p>
+                        <p>Dapibus ultrices in iaculis nunc sed. Arcu odio ut sem nulla pharetra diam sit. Mauris ultrices
+                            eros in cursus turpis massa tincidunt dui. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Commodo
+                            ullamcorper a lacus vestibulum. Et netus et malesuada fames ac turpis egestas.
+                        </p>
+                        <p>Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Risus sed vulputate odio ut enim
+                            blandit volutpat maecenas volutpat. Diam phasellus vestibulum lorem sed. Volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus scelerisque. Dolor purus non enim praesent. In eu
+                            mi bibendum neque egestas.
+                        </p>
+                        <p>Nibh ipsum consequat nisl vel pretium lectus quam. At risus viverra adipiscing at in tellus
+                            integer. Sed id semper risus in. Egestas sed sed risus pretium quam. Pellentesque elit
+                            ullamcorper dignissim cras.
+                        </p>
+                    </div>
+
+                </article>
+                `
+                articleNav.innerHTML = `
+                <h1>Sections</h1>
+                <ul id="article-nav">
+                    <li><a href="#section1">Section Title 1</a></li>
+                    <li><a href="#section2">Section Title 2</a></li>
+                    <li><a href="#section3">Section Title 3</a></li>
+                    <li><a href="#section4">Section Title 4</a></li>
+                </ul>
+                `
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    function scrollToSection(id) {
+        document.getElementById('main').scrollTo()
+    }
+
+    function makeActiveArticle(articleName) {
+
+    }
+</script>
+
+</html>
